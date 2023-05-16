@@ -9,13 +9,12 @@ public class DemoSteps {
     @Given("I open demoG7 site")
     public void iOpenDemoGSite() {
         System.out.println("I opened site");
-        
+
     }
 
     @When("I fill {string} in the form")
     public void iFillInTheForm(String text) {
         System.out.printf("Then I printed '%s' string", text);
-        
     }
 
     @Then("I need to see something")

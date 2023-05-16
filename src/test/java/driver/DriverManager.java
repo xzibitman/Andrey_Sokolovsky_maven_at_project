@@ -2,9 +2,8 @@ package driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
-
-import java.time.Duration;
 
 
 public class DriverManager {
@@ -12,19 +11,14 @@ public class DriverManager {
         return switch (config != null ? config : Config.CHROME) {
             case CHROME -> getChromeDriver();
             case FF -> getFireFoxDriver();
-            case Edge -> getEdgeDriver();
+            case EDGE -> getEdgeDriver();
         };
     }
 
-    public static WebDriver getChromeDriver() {
-
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
-        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(40));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
-        return driver;
-
+    private static WebDriver getChromeDriver() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+        return new ChromeDriver(options);
     }
 
     private static WebDriver getEdgeDriver() {
